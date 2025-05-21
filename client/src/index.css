@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 15% 18%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 0% / 0.1;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 0% / 0.15;
+  --popover-foreground: 0 0% 100%;
+  --primary: 52 80% 95%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 100% / 0.15;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 100% / 0.1;
+  --muted-foreground: 0 0% 100% / 0.75;
+  --accent: 52 80% 95%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 100% / 0.15;
+  --input: 0 0% 100% / 0.15;
+  --ring: 52 80% 95%;
+  --radius: 1.5rem;
+  --bg-url: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080');
+  
+  /* Vision OS specific variables */
+  --glass-thin: backdrop-blur-sm bg-white/10;
+  --glass-regular: backdrop-blur bg-white/15;
+  --glass-thick: backdrop-blur-lg bg-white/25;
+  --vision-shadow: shadow-[0_10px_20px_rgb(0_0_0/0.15)];
+  --motion-in: transition-all duration-300 ease-out;
+  --motion-out: transition-all duration-200 ease-in;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: radial-gradient(circle at 50% 30%, hsl(52 80% 95%) 0%, hsl(52 60% 88%) 30%, hsl(210 15% 18%) 100%);
+    @apply font-sans antialiased text-foreground;
+    overflow-x: hidden;
+  }
+  
+  /* Progress bar styling */
+  progress {
+    @apply w-full h-3 rounded-md overflow-hidden;
+  }
+  
+  progress::-webkit-progress-bar {
+    @apply bg-white/20 rounded-md;
+  }
+  
+  progress::-webkit-progress-value {
+    @apply bg-accent/80 rounded-md;
+  }
+  
+  /* Focus styles */
+  button:focus-visible, a:focus-visible, input:focus-visible {
+    @apply outline-accent/80 outline-2 outline outline-offset-2;
+  }
+}
+
+@layer components {
+  .glass-thin {
+    @apply backdrop-blur-sm bg-white/10;
+  }
+
+  .glass-regular {
+    @apply backdrop-blur bg-white/15;
+  }
+
+  .glass-thick {
+    @apply backdrop-blur-lg bg-white/25;
+  }
+
+  .vision-radius {
+    @apply rounded-[24px];
+  }
+
+  .vision-shadow {
+    @apply shadow-[0_10px_20px_rgb(0_0_0/0.15)];
+  }
+
+  .folder-tab {
+    @apply clip-path-[polygon(0_0,100%_0,100%_100%,8%_100%)];
+  }
+
+  .motion-in {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .motion-out {
+    @apply transition-all duration-200 ease-in;
+  }
+
+  .motion-hover {
+    @apply hover:scale-[1.03] transition-transform duration-300;
+  }
+
+  .text-primary {
+    @apply text-white/95;
+  }
+
+  .text-secondary {
+    @apply text-white/75;
+  }
+}
