@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { SFSymbol } from 'react-sf-symbols';
+import { Upload } from 'lucide-react';
 import { motion, glass, button, defaultBackgrounds } from '../styles/tokens';
 
 /**
@@ -88,7 +88,7 @@ const Settings = ({ isOpen, onClose, onBackgroundChange }) => {
               className="glass-thin rounded-xl border-2 border-dashed border-white/30 p-8 text-center cursor-pointer motion-hover"
               onClick={triggerFileUpload}
             >
-              <SFSymbol name="arrow.up.doc.fill" className="w-10 h-10 mx-auto mb-2" />
+              <Upload className="w-10 h-10 mx-auto mb-2" />
               <p className="text-primary">Drop your image here or click to browse</p>
               <p className="text-secondary text-sm mt-1">Recommended size: 1920×1080px</p>
               <input 

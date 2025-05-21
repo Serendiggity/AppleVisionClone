@@ -86,7 +86,7 @@
   }
 
   .folder-tab {
-    @apply clip-path-[polygon(0_0,100%_0,100%_100%,8%_100%)];
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
   }
 
   .motion-in {
