@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FolderTabs from '../components/FolderTabs';
 import Sidebar from '../components/Sidebar';
+import SearchBar from '../components/SearchBar';
 import CountdownHero from '../components/CountdownHero';
 import TimelinePanel from '../components/TimelinePanel';
 import BudgetPanel from '../components/BudgetPanel';
@@ -91,7 +92,17 @@ const Dashboard = ({ openSettings }) => {
       <Sidebar openSettings={openSettings} />
       
       <main className="w-full pl-24 py-4 pr-4">
-        <FolderTabs onTabChange={handleTabChange} />
+        <div className="flex justify-between items-center mb-2">
+          <div className="flex-1">
+            <FolderTabs onTabChange={handleTabChange} />
+          </div>
+          <div className="flex items-center space-x-4">
+            <SearchBar placeholder="Search in wedding plan..." onSearch={(query) => console.log('Searching for:', query)} />
+            <div className="w-10 h-10 glass-thin vision-radius flex items-center justify-center text-white/80 cursor-pointer motion-hover">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+            </div>
+          </div>
+        </div>
         
         {/* Content area with animations */}
         <div className="min-h-[600px]">

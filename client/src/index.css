@@ -55,10 +55,21 @@
     @apply border-border;
   }
 
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
+  }
+
   body {
     background: radial-gradient(circle at 50% 30%, hsl(52 80% 95%) 0%, hsl(52 60% 88%) 30%, hsl(210 15% 18%) 100%);
     @apply font-sans antialiased text-foreground;
     overflow-x: hidden;
+    letter-spacing: -0.015em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+    font-weight: 500;
   }
   
   /* Progress bar styling */
@@ -77,6 +88,37 @@
   /* Focus styles */
   button:focus-visible, a:focus-visible, input:focus-visible {
     @apply outline-accent/80 outline-2 outline outline-offset-2;
+  }
+  
+  /* Input styling */
+  input {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(4px);
+  }
+  
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
   }
 }
 

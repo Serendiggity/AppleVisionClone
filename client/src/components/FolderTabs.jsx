@@ -75,7 +75,8 @@ const FolderTabs = ({ onTabChange }) => {
           width: `${indicator.width}px`,
           height: `${indicator.height}px`,
           opacity: indicator.opacity,
-          pointerEvents: 'none' // Let clicks pass through
+          pointerEvents: 'none', // Let clicks pass through
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)' // Vision OS shadow effect
         }}
       />
       
