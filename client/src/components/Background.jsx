@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { defaultBackgrounds } from '../styles/tokens';
 
 /**
  * @component Background
@@ -8,16 +9,14 @@ import { useEffect, useRef } from 'react';
 const Background = ({ url }) => {
   const bgRef = useRef(null);
   
-  // Initialize background image
+  // Update background image whenever url changes
   useEffect(() => {
-    if (!url) {
-      // Set default background if none provided
-      document.documentElement.style.setProperty(
-        '--bg-url', 
-        'url(https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080)'
-      );
-    }
-  }, []);
+    const backgroundUrl = url || defaultBackgrounds[0];
+    document.documentElement.style.setProperty('--bg-url', `url(${backgroundUrl})`);
+    
+    // Update the body background style directly for better visual effect
+    document.body.style.backgroundImage = `url(${backgroundUrl})`;
+  }, [url]);
 
   // Parallax effect on mouse move
   useEffect(() => {
