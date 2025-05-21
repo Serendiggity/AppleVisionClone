@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { defaultBackgrounds } from '../styles/tokens';
 
 /**
@@ -8,14 +8,32 @@ import { defaultBackgrounds } from '../styles/tokens';
  */
 const Background = ({ url }) => {
   const bgRef = useRef(null);
+  const [isCustomUpload, setIsCustomUpload] = useState(false);
   
   // Update background image whenever url changes
   useEffect(() => {
     const backgroundUrl = url || defaultBackgrounds[0];
+    
+    // Check if this is a custom uploaded image (data URL) or a remote URL
+    const isCustomImage = backgroundUrl.startsWith('data:');
+    setIsCustomUpload(isCustomImage);
+    
     document.documentElement.style.setProperty('--bg-url', `url(${backgroundUrl})`);
     
-    // Update the body background style directly for better visual effect
-    document.body.style.backgroundImage = `url(${backgroundUrl})`;
+    // Apply different styling based on image type
+    if (isCustomImage) {
+      // For uploaded images, apply contain or scale-down to prevent zooming
+      document.body.style.backgroundImage = `url(${backgroundUrl})`;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center center';
+      document.body.style.backgroundRepeat = 'no-repeat';
+    } else {
+      // For default images from URLs, use cover for fullscreen
+      document.body.style.backgroundImage = `url(${backgroundUrl})`;
+      document.body.style.backgroundSize = 'cover'; 
+      document.body.style.backgroundPosition = 'center center';
+      document.body.style.backgroundRepeat = 'no-repeat';
+    }
   }, [url]);
 
   // Parallax effect on mouse move
@@ -44,8 +62,10 @@ const Background = ({ url }) => {
   return (
     <div 
       ref={bgRef}
-      className="fixed inset-0 -z-10 bg-cover bg-center will-change-transform"
-      style={{ transformStyle: 'preserve-3d' }}
+      className={`fixed inset-0 -z-10 will-change-transform ${isCustomUpload ? 'bg-contain' : 'bg-cover'} bg-center bg-no-repeat`}
+      style={{ 
+        transformStyle: 'preserve-3d',
+      }}
     />
   );
 };

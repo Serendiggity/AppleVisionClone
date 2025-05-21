@@ -58,14 +58,50 @@ const Settings = ({ isOpen, onClose, onBackgroundChange }) => {
     setSelectedBackground(bg);
   };
   
-  // Handle file upload
+  // Handle file upload with proper image sizing
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Check if the file is an image
+      if (!file.type.match('image.*')) {
+        alert('Please select an image file');
+        return;
+      }
+      
       const reader = new FileReader();
       reader.onload = (e) => {
         const result = e.target.result;
-        setSelectedBackground(result);
+        
+        // Create an image element to check dimensions
+        const img = new Image();
+        img.onload = () => {
+          // Create a canvas to resize the image if needed
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          
+          // Calculate aspect ratio and ensure reasonable dimensions
+          const maxDimension = 1920;
+          if (width > height && width > maxDimension) {
+            height = Math.round((height * maxDimension) / width);
+            width = maxDimension;
+          } else if (height > maxDimension) {
+            width = Math.round((width * maxDimension) / height);
+            height = maxDimension;
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          
+          // Draw the resized image on canvas
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          // Get the resized image as a data URL
+          const resizedImage = canvas.toDataURL(file.type || 'image/jpeg', 0.9);
+          setSelectedBackground(resizedImage);
+        };
+        img.src = result;
       };
       reader.readAsDataURL(file);
     }
