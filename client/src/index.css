@@ -31,7 +31,7 @@
   --saturation: 100%;
   --contrast: 100%;
   --panel-roundness: 24px;
-  --bezel-color: #F6F6F6;
+  --bezel-color: rgba(80, 80, 80, 0.3);
   
   /* Temporary variables for previewing settings */
   --temp-blur-level: var(--blur-level);

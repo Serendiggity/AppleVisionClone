@@ -274,10 +274,18 @@ const Settings = ({ isOpen, onClose, onBackgroundChange }) => {
                   <span className="text-secondary">1px border</span>
                 </div>
                 <div className="grid grid-cols-7 gap-2">
-                  {["#F6F6F6", "#FFFFFF", "#E0E0E0", "#D4D4D8", "#F5F3FF", "#EFF6FF", "#F0FDF4"].map((color, index) => (
+                  {[
+                    "rgba(80, 80, 80, 0.3)", // Subtle dark gray (default)
+                    "rgba(60, 60, 60, 0.2)", // More transparent gray
+                    "rgba(100, 100, 100, 0.25)", // Medium gray
+                    "rgba(50, 50, 50, 0.4)", // Darker gray
+                    "rgba(70, 70, 90, 0.3)", // Bluish gray
+                    "rgba(80, 70, 60, 0.25)", // Brownish gray
+                    "rgba(255, 255, 255, 0.2)" // Very subtle white
+                  ].map((color, index) => (
                     <button
                       key={index}
-                      className={`w-full aspect-square rounded-md cursor-pointer transition-all ${localStorage.getItem('ui-bezel-color') === color ? 'ring-2 ring-accent' : ''}`}
+                      className={`w-full aspect-square rounded-md cursor-pointer transition-all border border-white/20 ${localStorage.getItem('ui-bezel-color') === color ? 'ring-2 ring-accent' : ''}`}
                       style={{ backgroundColor: color }}
                       onClick={() => {
                         document.documentElement.style.setProperty('--bezel-color', color);
@@ -288,7 +296,7 @@ const Settings = ({ isOpen, onClose, onBackgroundChange }) => {
                   ))}
                 </div>
                 <div className="flex justify-between text-xs text-secondary mt-1">
-                  <span>Light reflection colors</span>
+                  <span>Subtle reflection options</span>
                 </div>
               </div>
             </div>
