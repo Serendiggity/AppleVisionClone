@@ -266,6 +266,31 @@ const Settings = ({ isOpen, onClose, onBackgroundChange }) => {
                   <span>Rounded Corners</span>
                 </div>
               </div>
+              
+              {/* Bezel Color Picker */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <label className="text-primary">Light Reflection (Bezel)</label>
+                  <span className="text-secondary">1px border</span>
+                </div>
+                <div className="grid grid-cols-7 gap-2">
+                  {["#F6F6F6", "#FFFFFF", "#E0E0E0", "#D4D4D8", "#F5F3FF", "#EFF6FF", "#F0FDF4"].map((color, index) => (
+                    <button
+                      key={index}
+                      className={`w-full aspect-square rounded-md cursor-pointer transition-all ${localStorage.getItem('ui-bezel-color') === color ? 'ring-2 ring-accent' : ''}`}
+                      style={{ backgroundColor: color }}
+                      onClick={() => {
+                        document.documentElement.style.setProperty('--bezel-color', color);
+                        localStorage.setItem('ui-bezel-color', color);
+                      }}
+                      title={`Bezel color ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between text-xs text-secondary mt-1">
+                  <span>Light reflection colors</span>
+                </div>
+              </div>
             </div>
           </div>
           

@@ -31,6 +31,7 @@
   --saturation: 100%;
   --contrast: 100%;
   --panel-roundness: 24px;
+  --bezel-color: #F6F6F6;
   
   /* Temporary variables for previewing settings */
   --temp-blur-level: var(--blur-level);
@@ -83,32 +84,44 @@
   .glass-thin {
     backdrop-filter: blur(calc(var(--blur-level) * 0.75)) saturate(var(--saturation)) contrast(var(--contrast));
     background-color: rgba(255, 255, 255, calc(var(--glass-opacity) * 0.67 / 100));
+    border: 1px solid var(--bezel-color);
+    box-sizing: border-box;
   }
 
   .glass-regular {
     backdrop-filter: blur(var(--blur-level)) saturate(var(--saturation)) contrast(var(--contrast));
     background-color: rgba(255, 255, 255, calc(var(--glass-opacity) / 100));
+    border: 1px solid var(--bezel-color);
+    box-sizing: border-box;
   }
 
   .glass-thick {
     backdrop-filter: blur(calc(var(--blur-level) * 1.5)) saturate(var(--saturation)) contrast(var(--contrast));
     background-color: rgba(255, 255, 255, calc(var(--glass-opacity) * 1.5 / 100));
+    border: 1px solid var(--bezel-color);
+    box-sizing: border-box;
   }
 
   /* Preview mode when settings is open */
   .previewing-settings .glass-thin {
     backdrop-filter: blur(calc(var(--temp-blur-level) * 0.75)) saturate(var(--temp-saturation)) contrast(var(--temp-contrast));
     background-color: rgba(255, 255, 255, calc(var(--temp-glass-opacity) * 0.67 / 100));
+    border: 1px solid var(--bezel-color);
+    box-sizing: border-box;
   }
 
   .previewing-settings .glass-regular {
     backdrop-filter: blur(var(--temp-blur-level)) saturate(var(--temp-saturation)) contrast(var(--temp-contrast));
     background-color: rgba(255, 255, 255, calc(var(--temp-glass-opacity) / 100));
+    border: 1px solid var(--bezel-color);
+    box-sizing: border-box;
   }
 
   .previewing-settings .glass-thick {
     backdrop-filter: blur(calc(var(--temp-blur-level) * 1.5)) saturate(var(--temp-saturation)) contrast(var(--temp-contrast));
     background-color: rgba(255, 255, 255, calc(var(--temp-glass-opacity) * 1.5 / 100));
+    border: 1px solid var(--bezel-color);
+    box-sizing: border-box;
   }
 
   .vision-radius {
