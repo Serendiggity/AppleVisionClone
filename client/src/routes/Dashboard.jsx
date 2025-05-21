@@ -92,13 +92,17 @@ const Dashboard = ({ openSettings }) => {
       <Sidebar openSettings={openSettings} />
       
       <main className="w-full pl-24 py-4 pr-4">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-4">
           <div className="flex-1">
+            <h2 className="text-2xl font-medium text-white/90 ml-2 mb-2" style={{ textShadow: 'var(--vision-text-shadow)' }}>
+              Wedding Planner
+            </h2>
             <FolderTabs onTabChange={handleTabChange} />
           </div>
           <div className="flex items-center space-x-4">
             <SearchBar placeholder="Search in wedding plan..." onSearch={(query) => console.log('Searching for:', query)} />
-            <div className="w-10 h-10 glass-thin vision-radius flex items-center justify-center text-white/80 cursor-pointer motion-hover">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center text-white/80 cursor-pointer"
+              style={{ background: 'rgba(255, 255, 255, 0.08)', backdropFilter: 'blur(20px)' }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
             </div>
           </div>

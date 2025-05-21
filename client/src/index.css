@@ -33,6 +33,13 @@
   --panel-roundness: 24px;
   --bezel-color: rgba(80, 80, 80, 0.3);
   
+  /* Vision OS enhanced styling */
+  --vision-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  --vision-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --vision-highlight: rgba(255, 255, 255, 0.08);
+  --vision-panel-bg: rgba(255, 255, 255, 0.12);
+  --vision-nav-active: rgba(255, 255, 255, 0.18);
+  
   /* Temporary variables for previewing settings */
   --temp-blur-level: var(--blur-level);
   --temp-glass-opacity: var(--glass-opacity);
