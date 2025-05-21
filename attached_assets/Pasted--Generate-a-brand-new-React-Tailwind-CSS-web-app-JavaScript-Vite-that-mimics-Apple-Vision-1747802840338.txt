@@ -1,0 +1,85 @@
+
+
+Generate a brand-new **React + Tailwind CSS** web app (JavaScript + Vite) that mimics Apple Vision OS “glass” aesthetics while using a classic binder-tab navigation layout. ## 0 — Dependencies ```bash npm i react-router-dom react-sf-symbols clsx tailwind-merge npx tailwindcss init -p # include @tailwindcss/forms
+
+1 — Project structure
+
+src/ App.jsx # wraps <Router>, mounts <Background /> styles/tokens.js # design tokens routes/ Dashboard.jsx # "/" Settings.jsx # "/settings" components/ Background.jsx FolderTabs.jsx # top “file-folder” tabs Sidebar.jsx # vertical icon rail CountdownHero.jsx TimelinePanel.jsx BudgetPanel.jsx GuestPanel.jsx
+
+2 — Global design tokens /src/styles/tokens.js
+
+export const glass = { thin: 'backdrop-blur-sm bg-white/10', regular: 'backdrop-blur bg-white/15', thick: 'backdrop-blur-lg bg-white/25', }; export const radius = 'rounded-[24px]'; // Vision OS default window corner export const accent = 'hsla(52 80% 95% / <alpha-value>)'; // pastel yellow export const shadow = 'shadow-[0_10px_20px_rgb(0_0_0/0.15)]'; export const motion = { in: 'transition-all duration-300 ease-out', out: 'transition-all duration-200 ease-in', hover: 'hover:scale-[1.02] hover:opacity-90', };
+
+3 — Background Layer (always z-0)
+
+<Background /> mounts once in App.jsx right inside #root.
+
+Fixed full-viewport div: class="fixed inset-0 -z-10 bg-cover bg-center" Background source: var(--bg-url, url('/default.jpg')).
+
+Default backdrop: radial gradient radial-gradient(circle at 50% 30%, hsl(52 80% 95%) 0%, hsl(52 60% 88%) 30%, hsl(210 15% 18%) 100%).
+
+Pointer-parallax (max ±4 px) to reinforce depth.
+
+In /settings, the Background Picker updates
+
+document.documentElement.style.setProperty('--bg-url', `url(${file})`);
+
+then cross-fades by toggling opacity.
+
+4 — Routing
+
+/ → Dashboard
+
+/settings → Settings (opened from avatar icon)
+
+5 — Dashboard layout
+
+FolderTabs (binder-style): asymmetric left-skew via clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
+
+Tabs: “Our Wedding”, “+ New”, “History”.
+
+Sidebar (56 × 56 buttons) uses .regular glass + react-sf-symbols.
+
+Panels
+
+<CountdownHero> — big day counter.
+
+<TimelinePanel> — vertical list with SF Symbol bullets.
+
+<BudgetPanel> — <progress> bar tinted accent.
+
+<GuestPanel> — search + scrollable guest cards. All panels: ${glass.thin} ${radius} ${shadow} p-6.
+
+6 — Settings page
+
+Full-screen modal (pushes in with motion.in slide-up).
+
+Background Picker
+
+Gallery of 8 thumbnails (Unsplash placeholders).
+
+Custom upload drop-zone: dashed .thin glass, lifts on drag-over.
+
+Buttons bottom-right: Reset (outline accent/50) & Save (solid accent).
+
+7 — Vision OS nuances to respect
+
+Glass hierarchy — sidebar darker, content lighter.
+
+Vibrancy levels: primary text / secondary footnotes.
+
+Focus ring — focus-visible:outline-[accent] on every interactive element.
+
+Micro-interactions < 300 ms; hover uses motion.hover.
+
+8 — Inline documentation
+
+Annotate each component with @token comments referencing values from tokens.js.
+
+At top of App.jsx include ASCII state diagram:
+
+Dashboard --click avatar--> Settings ^ | |------ ESC / Save -------|
+
+End of prompt — v0 should now generate the full codebase.
+
+ --- ### What this adds * **Background component** + CSS variable swap for user-chosen images. * Binder-tab skew spec so v0 clips the tabs correctly. * Clear dependency list and directory map. * Design-token file keeps all the Vision OS “glass” values in one place. 
